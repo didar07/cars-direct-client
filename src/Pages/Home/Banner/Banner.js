@@ -8,7 +8,7 @@ const Banner = () => {
                 <div>
                     <h1 className="text-5xl font-bold">Your Dream Car Just One Click Away!</h1>
                     <p className="py-6">Schedule a test drive from the wide range of our car collection</p>
-
+                    <button className='bg-gradient-to-r from-purple-500 to-pink-500 px-7 py-3 rounded-lg text-white font-semibold'>See Used Cars</button>
                 </div>
             </div>
         </div>
