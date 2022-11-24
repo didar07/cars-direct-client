@@ -1,0 +1,62 @@
+[
+    {
+        "category_name": "Toyota",
+        "_id": "01",
+        "first_car": {
+            "name": "Toyota Corolla",
+            "image": "",
+            "location": "Dhaka",
+            "resale_price": "35700",
+            "original_price": "52500",
+            "seller_name": "Md Rashed"
+        },
+        "second_car": {
+            "name": "Toyota Avalon",
+            "image": "",
+            "location": "Chittagong",
+            "resale_price": "25760",
+            "original_price": "49950",
+            "seller_name": "Md Sakib"
+        }
+    },
+    {
+        "category_name": "Nissan",
+        "_id": "02",
+        "first_car": {
+            "name": "Nissan Versa",
+            "image": "",
+            "location": "Dhaka",
+            "resale_price": "37545",
+            "original_price": "47789",
+            "seller_name": "Md Arif"
+        },
+        "second_car": {
+            "name": "Nissan Armada",
+            "image": "",
+            "location": "Sylhet",
+            "resale_price": "47800",
+            "original_price": "67500",
+            "seller_name": "Md Tahsin"
+        }
+    },
+    {
+        "category_name": "Hyundai",
+        "_id": "02",
+        "first_car": {
+            "name": "Elentra Hybrid",
+            "image": "",
+            "location": "Cumilla",
+            "resale_price": "23980",
+            "original_price": "46500",
+            "seller_name": "Md Sajjad"
+        },
+        "second_car": {
+            "name": "Santa fe Hybrid",
+            "image": "",
+            "location": "Gazipur",
+            "resale_price": "42800",
+            "original_price": "64500",
+            "seller_name": "Md Rakib"
+        }
+    }
+]
