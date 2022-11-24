@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BookingModal from '../BookingModal/BookingModal';
 import SingleCategory from './SingleCategory';
 
 const Category = () => {
@@ -27,7 +28,7 @@ const Category = () => {
                     </Link>
                 </button>
             </div>
-
+            {/* <BookingModal></BookingModal> */}
         </div >
     );
 };

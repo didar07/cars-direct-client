@@ -1,9 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookingModal from '../BookingModal/BookingModal';
 
 const SingleCategory = () => {
     const { first_car, second_car } = useLoaderData()
-    console.log(first_car)
+    // console.log(first_car)
+
+    const [booking, setBooking] = useState({})
+    console.log(booking)
     return (
         <div className='lg:grid grid-cols-2 gap-7'>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -16,7 +21,8 @@ const SingleCategory = () => {
                     <p>Seller Name: {first_car.seller_name}</p>
 
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+
+                        <label onClick={() => setBooking(first_car)} htmlFor="booking-modal" className="btn btn-primary">Buy Now</label>
                     </div>
                 </div>
             </div>
@@ -31,11 +37,12 @@ const SingleCategory = () => {
                     <p>Seller Name: {second_car.seller_name}</p>
 
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+
+                        <label onClick={() => setBooking(second_car)} htmlFor="booking-modal" className="btn btn-primary">Buy Now</label>
                     </div>
                 </div>
             </div>
-
+            <BookingModal booking={booking}></BookingModal>
         </div>
     );
 };
