@@ -4,6 +4,7 @@ import Benifit from '../Benifit/Benifit';
 import Category from '../Category/Category';
 
 const Home = () => {
+
     return (
         <div className='mx-5'>
             <Banner></Banner>
