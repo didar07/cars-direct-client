@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
-
+    const { signIn } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [loginError, setLoginError] = useState('');
@@ -15,16 +17,16 @@ const Login = () => {
     const handleLogin = data => {
         console.log(data);
         setLoginError('');
-        // signIn(data.email, data.password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         navigate(from, {replace: true});
-        //     })
-        //     .catch(error => {
-        //         console.log(error.message)
-        //         setLoginError(error.message);
-        //     });
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message);
+            });
     }
 
 
