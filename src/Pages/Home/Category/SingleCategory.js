@@ -7,6 +7,8 @@ const SingleCategory = () => {
     const { first_car, second_car } = useLoaderData()
     // console.log(first_car)
 
+    const date = new Date().getDate()
+
     const [booking, setBooking] = useState({})
     console.log(booking)
     return (
@@ -19,7 +21,8 @@ const SingleCategory = () => {
                     <p>Original Price: ${first_car.original_price}</p>
                     <p>Resale Price: ${first_car.resale_price}</p>
                     <p>Seller Name: {first_car.seller_name}</p>
-
+                    <p>Years of Use: {first_car.years_of_use}</p>
+                    <p>Posted Time :{date}</p>
                     <div className="card-actions justify-end">
 
                         <label onClick={() => setBooking(first_car)} htmlFor="booking-modal" className="btn btn-primary">Buy Now</label>
@@ -35,14 +38,15 @@ const SingleCategory = () => {
                     <p>Original Price: ${second_car.original_price}</p>
                     <p>Resale Price: ${second_car.resale_price}</p>
                     <p>Seller Name: {second_car.seller_name}</p>
-
+                    <p>Years of Use: {first_car.years_of_use}</p>
+                    <p>Posted Time :{date}</p>
                     <div className="card-actions justify-end">
 
                         <label onClick={() => setBooking(second_car)} htmlFor="booking-modal" className="btn btn-primary">Buy Now</label>
                     </div>
                 </div>
             </div>
-            <BookingModal booking={booking}></BookingModal>
+            <BookingModal booking={booking} setBooking={setBooking}></BookingModal>
         </div>
     );
 };
