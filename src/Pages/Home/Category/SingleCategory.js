@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React from 'react';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
@@ -8,9 +9,9 @@ const SingleCategory = () => {
     // console.log(first_car)
 
     const date = new Date()
-
-    const [booking, setBooking] = useState({})
-    console.log(booking)
+    const newDate = format(date, 'PP')
+    const [booking, setBooking] = useState([])
+    // console.log(booking)
     return (
         <div className='lg:grid grid-cols-2 gap-7'>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -22,7 +23,7 @@ const SingleCategory = () => {
                     <p>Resale Price: ${first_car.resale_price}</p>
                     <p>Seller Name: {first_car.seller_name}</p>
                     <p>Years of Use: {first_car.years_of_use}</p>
-                    <p>Posted Time :{JSON.stringify(date)}</p>
+                    <p>Posted Time :{JSON.stringify(newDate)}</p>
                     <div className="card-actions justify-end">
 
                         <label onClick={() => setBooking(first_car)} htmlFor="booking-modal" className="btn btn-primary">Buy Now</label>
@@ -39,7 +40,7 @@ const SingleCategory = () => {
                     <p>Resale Price: ${second_car.resale_price}</p>
                     <p>Seller Name: {second_car.seller_name}</p>
                     <p>Years of Use: {first_car.years_of_use}</p>
-                    <p>Posted Time :{JSON.stringify(date)}</p>
+                    <p>Posted Time :{JSON.stringify(newDate)}</p>
                     <div className="card-actions justify-end">
 
                         <label onClick={() => setBooking(second_car)} htmlFor="booking-modal" className="btn btn-primary">Buy Now</label>
