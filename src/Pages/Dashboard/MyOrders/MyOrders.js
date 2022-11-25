@@ -34,11 +34,11 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings.map((booking, i) => <tr className='hover'>
+                            bookings.map((booking, i) => <tr key={booking._id} className='hover'>
                                 <th>{i + 1}</th>
                                 <th>{booking.name}</th>
                                 <th>{booking.bookingName}</th>
-                                <th>{booking.resalePrice}</th>
+                                <th>$ {booking.resalePrice}</th>
                                 <th>{booking.location}</th>
                             </tr>)
                         }

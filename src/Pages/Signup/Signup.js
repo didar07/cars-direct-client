@@ -26,7 +26,8 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        navigate('/')
+                        saveUser(data.name, data.email, data.choose)
+
                     })
                     .catch(err => console.log(err));
             })
@@ -35,7 +36,6 @@ const Signup = () => {
                 setSignUPError(error.message)
             });
     }
-
 
 
     const handleGoogleSignIn = () => {
@@ -48,6 +48,22 @@ const Signup = () => {
             .catch(err => console.error(err))
     }
 
+
+    const saveUser = (name, email, choose) => {
+        const user = { name, email, choose };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('save user', data)
+                navigate('/')
+            })
+    }
 
     return (
         <div className='h-[800px] flex justify-center items-center'>
