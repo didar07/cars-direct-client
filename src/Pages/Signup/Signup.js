@@ -7,7 +7,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 
 const Signup = () => {
 
-    const { createUser, updateUser } = useContext(AuthContext)
+    const { createUser, updateUser, googleSignIn } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('')
 
@@ -30,6 +30,18 @@ const Signup = () => {
                 console.log(error)
                 setSignUPError(error.message)
             });
+    }
+
+
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user
+                console.log(user)
+
+            })
+            .catch(err => console.error(err))
     }
 
 
@@ -76,7 +88,7 @@ const Signup = () => {
                 </form>
                 <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
 
             </div>
         </div>
