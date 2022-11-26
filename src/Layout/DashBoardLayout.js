@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
@@ -10,6 +12,19 @@ const DashBoardLayout = () => {
     const { user } = useContext(AuthContext)
     const [isAdmin] = useAdmin(user?.email)
 
+    const [sellers, setSellers] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/sellers')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setSellers(data)
+            })
+    }, [])
+
+
+
     return (
         <div>
             <Navbar></Navbar>
@@ -19,11 +34,23 @@ const DashBoardLayout = () => {
                     <Outlet></Outlet>
 
                 </div>
+
                 <div className="drawer-side">
+
+                    <div className='invisible'>
+                        {
+                            sellers.map(seller => <p key={seller._id}>{seller.choose}</p>)
+                        }
+                    </div>
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
 
                         <li><Link to='/dashboard'>My Orders</Link></li>
+
+                        {sellers &&
+                            <li><Link to='/dashboard/addproduct'>Add A Product</Link></li>
+                        }
+
                         {
                             isAdmin &&
                             <>
@@ -35,6 +62,8 @@ const DashBoardLayout = () => {
                     </ul>
 
                 </div>
+
+
             </div>
         </div>
     );

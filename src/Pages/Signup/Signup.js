@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
+import DashBoardLayout from '../../Layout/DashBoardLayout';
 
 const Signup = () => {
 
@@ -12,9 +13,10 @@ const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('')
     const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [googleUser, setGoogleUser] = useState('')
 
     const navigate = useNavigate();
-    const [token] = useToken(createdUserEmail)
+    const [token] = useToken(createdUserEmail, googleUser)
 
     if (token) {
         navigate('/')
@@ -50,7 +52,9 @@ const Signup = () => {
             .then(result => {
                 const user = result.user
                 console.log(user)
-
+                const email = user.email
+                console.log(email)
+                setGoogleUser(email)
             })
             .catch(err => console.error(err))
     }
@@ -117,9 +121,10 @@ const Signup = () => {
                 </form>
                 <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
                 <div className="divider">OR</div>
-                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>SIGNUP WITH GOOGLE</button>
 
             </div>
+
         </div>
     );
 };

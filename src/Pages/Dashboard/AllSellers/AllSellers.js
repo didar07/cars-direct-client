@@ -103,6 +103,7 @@ const AllSellers = () => {
                     modalData={deletingSeller}
                 ></ConfirmationModal>
             }
+
         </div>
     );
 };

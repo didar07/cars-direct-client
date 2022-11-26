@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 import DashBoardLayout from "../../Layout/DashBoardLayout"
 import Main from "../../Layout/Main"
 import Blogs from "../../Pages/Blogs/Blogs"
+import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct"
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers"
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers"
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard"
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
+                path: '/categories/:id',
+                element: <PrivateRoute><SingleCategory></SingleCategory></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+            },
+            {
                 path: '/login',
                 element: <Login></Login>
             },
@@ -36,11 +42,7 @@ export const router = createBrowserRouter([
                 path: '/blogs',
                 element: <Blogs></Blogs>
             },
-            {
-                path: '/categories/:id',
-                element: <SingleCategory></SingleCategory>,
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
-            }
+
         ]
     },
     {
@@ -50,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/addproduct',
+                element: <AddProduct></AddProduct>
             },
             {
                 path: '/dashboard/allusers',
