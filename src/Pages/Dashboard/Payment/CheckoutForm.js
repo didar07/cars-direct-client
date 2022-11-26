@@ -1,8 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({ booking }) => {
-    const { resalePrice, name, email } = booking
+    const { resalePrice, name, email, _id } = booking
 
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
@@ -55,6 +56,7 @@ const CheckoutForm = ({ booking }) => {
         }
 
         setSuccess('');
+        setProcessing(true)
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -73,9 +75,37 @@ const CheckoutForm = ({ booking }) => {
             return;
         }
         if (paymentIntent.status === "succeeded") {
-            setSuccess('Congrats! your payment completed');
-            setTransactionId(paymentIntent.id);
+
+            const payment = {
+                resalePrice,
+                transactionId: paymentIntent.id,
+                email,
+                bookingId: _id
+            }
+
+            fetch('http://localhost:5000/payments', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.insertedId) {
+                        setSuccess('Congrats! your payment completed');
+                        setTransactionId(paymentIntent.id);
+                        toast.success('payment done succefully')
+
+                    }
+                })
+
         }
+        setProcessing(false)
+
     }
 
     return (
@@ -100,7 +130,7 @@ const CheckoutForm = ({ booking }) => {
                 <button
                     className='btn btn-sm mt-4 btn-primary'
                     type="submit"
-                    disabled={!stripe || !clientSecret}>
+                    disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
             </form>

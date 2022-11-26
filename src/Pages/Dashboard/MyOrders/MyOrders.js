@@ -50,7 +50,7 @@ const MyOrders = () => {
                                 <th>{
                                     !booking.paid && <Link to={`/dashboard/payment/${booking._id}`}><button className='btn btn-info'>Pay</button></Link>
                                 }
-                                    {booking.paid && <button className='btn btn-info'>Paid</button>}
+                                    {booking.paid && <span className='text-success'>Paid</span>}
                                 </th>
                             </tr>)
                         }
