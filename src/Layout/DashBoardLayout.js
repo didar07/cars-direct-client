@@ -47,7 +47,7 @@ const DashBoardLayout = () => {
 
                         <li><Link to='/dashboard'>My Orders</Link></li>
 
-                        {sellers &&
+                        {!isAdmin &&
                             <li><Link to='/dashboard/addproduct'>Add A Product</Link></li>
                         }
 
