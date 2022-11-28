@@ -13,8 +13,7 @@ const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('')
     const [createdUserEmail, setCreatedUserEmail] = useState('')
-    // const [googleUser, setGoogleUser] = useState('')
-    // console.log(googleUser)
+
     const navigate = useNavigate();
     const [token] = useToken(createdUserEmail)
 
@@ -56,9 +55,9 @@ const Signup = () => {
                 const currentUser = {
                     email: user.email
                 }
-                // setGoogleUser(currentUser.email)
 
-                fetch('http://localhost:5000/users', {
+
+                fetch('https://cars-direct-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -67,7 +66,6 @@ const Signup = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        // localStorage.getItem('accessToken', data.accessToken)
 
 
                     })
@@ -79,7 +77,7 @@ const Signup = () => {
 
     const saveUser = (name, email, choose) => {
         const user = { name, email, choose };
-        fetch('http://localhost:5000/users', {
+        fetch('https://cars-direct-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -28,7 +28,7 @@ const BookingModal = ({ booking, setBooking }) => {
         }
         // console.log(bookingInfo)
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://cars-direct-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

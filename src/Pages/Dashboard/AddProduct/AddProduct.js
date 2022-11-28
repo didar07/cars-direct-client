@@ -15,7 +15,7 @@ const AddProduct = () => {
 
     const [category, setCategory] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('https://cars-direct-server.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
@@ -33,7 +33,7 @@ const AddProduct = () => {
             yearsofuse: data.yearsofuse,
             category: data.category
         }
-        fetch('http://localhost:5000/products', {
+        fetch('https://cars-direct-server.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

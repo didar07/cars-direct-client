@@ -17,7 +17,7 @@ const MyProducts = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/products')
+                const res = await fetch('https://cars-direct-server.vercel.app/products')
                 const data = await res.json()
                 return data
             }
@@ -28,7 +28,7 @@ const MyProducts = () => {
     })
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://cars-direct-server.vercel.app/products/${product._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
