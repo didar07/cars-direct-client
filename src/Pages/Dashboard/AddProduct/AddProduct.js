@@ -5,23 +5,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-
-    // const { data: category, isLoading } = useQuery({
-    //     queryKey: ['category'],
-    //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:5000/category')
-    //         const data = await res.json();
-    //         console.log(data[0].category_name)
-    //         return data;
-
-    //     }
-    // })
-
+    const navigate = useNavigate()
 
     const [category, setCategory] = useState([])
     useEffect(() => {
@@ -55,6 +45,7 @@ const AddProduct = () => {
             .then(result => {
                 console.log(result)
                 toast.success(`${data.name} is added successfully`);
+                navigate('/dashboard/myproducts')
             })
     }
 
