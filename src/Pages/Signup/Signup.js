@@ -13,10 +13,10 @@ const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('')
     const [createdUserEmail, setCreatedUserEmail] = useState('')
-    const [googleUser, setGoogleUser] = useState('')
-    console.log(googleUser)
+    // const [googleUser, setGoogleUser] = useState('')
+    // console.log(googleUser)
     const navigate = useNavigate();
-    const [token] = useToken(createdUserEmail, googleUser)
+    const [token] = useToken(createdUserEmail)
 
     if (token) {
         navigate('/')
@@ -52,24 +52,25 @@ const Signup = () => {
             .then(result => {
                 const user = result.user
                 console.log(user)
-                const email = user.email
-                console.log(email)
+                setCreatedUserEmail(user?.email)
+                const currentUser = {
+                    email: user.email
+                }
+                // setGoogleUser(currentUser.email)
 
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(user)
+                    body: JSON.stringify(currentUser)
                 })
                     .then(res => res.json())
                     .then(data => {
-                        setGoogleUser(email)
+                        // localStorage.getItem('accessToken', data.accessToken)
 
 
                     })
-
-
 
             })
             .catch(err => console.error(err))
